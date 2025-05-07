@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"github.com/apache/answer-plugins/util"
 	"github.com/apache/answer/plugin"
-	myI18n "github.com/segmentfault/pacman/i18n"
-	"gitlab.hexinfo.cn/xops/answer-plugins/llm-reviewer/i18n"
+	my18N "github.com/cyoung96/llm-reviewer/i18n"
+	"github.com/segmentfault/pacman/i18n"
 	"strings"
 )
 
@@ -43,9 +43,9 @@ func (r *Reviewer) Info() plugin.Info {
 	info.GetInfo(Info)
 
 	return plugin.Info{
-		Name:        plugin.MakeTranslator(i18n.InfoName),
+		Name:        plugin.MakeTranslator(my18N.InfoName),
 		SlugName:    info.SlugName,
-		Description: plugin.MakeTranslator(i18n.InfoDescription),
+		Description: plugin.MakeTranslator(my18N.InfoDescription),
 		Author:      info.Author,
 		Version:     info.Version,
 		Link:        info.Link,
@@ -64,7 +64,7 @@ func (r *Reviewer) Review(content *plugin.ReviewContent) (result *plugin.ReviewR
 		result = &plugin.ReviewResult{
 			Approved:     false,
 			ReviewStatus: plugin.ReviewStatusNeedReview,
-			Reason:       plugin.TranslateWithData(myI18n.Language(content.Language), i18n.CommentNeedReview, nil),
+			Reason:       plugin.TranslateWithData(i18n.Language(content.Language), my18N.CommentNeedReview, nil),
 		}
 		return result
 	}
@@ -73,7 +73,7 @@ func (r *Reviewer) Review(content *plugin.ReviewContent) (result *plugin.ReviewR
 		result = &plugin.ReviewResult{
 			Approved:     false,
 			ReviewStatus: plugin.ReviewStatusNeedReview,
-			Reason:       plugin.TranslateWithData(myI18n.Language(content.Language), i18n.CommentNeedReview, nil),
+			Reason:       plugin.TranslateWithData(i18n.Language(content.Language), my18N.CommentNeedReview, nil),
 		}
 		return result
 	}
@@ -96,7 +96,7 @@ func (r *Reviewer) Review(content *plugin.ReviewContent) (result *plugin.ReviewR
 			return &plugin.ReviewResult{
 				Approved:     false,
 				ReviewStatus: plugin.ReviewStatusNeedReview,
-				Reason:       fmt.Sprintf(plugin.TranslateWithData(myI18n.Language(content.Language), i18n.CommentMatchWordReview, nil), keyword),
+				Reason:       fmt.Sprintf(plugin.TranslateWithData(i18n.Language(content.Language), my18N.CommentMatchWordReview, nil), keyword),
 			}
 		}
 	}
@@ -116,7 +116,7 @@ func (r *Reviewer) Review(content *plugin.ReviewContent) (result *plugin.ReviewR
 			return &plugin.ReviewResult{
 				Approved:     false,
 				ReviewStatus: plugin.ReviewStatusDeleteDirectly,
-				Reason:       fmt.Sprintf(plugin.TranslateWithData(myI18n.Language(content.Language), i18n.CommentMatchWordReview, nil), disallowedKeyword),
+				Reason:       fmt.Sprintf(plugin.TranslateWithData(i18n.Language(content.Language), my18N.CommentMatchWordReview, nil), disallowedKeyword),
 			}
 		}
 	}
@@ -140,37 +140,37 @@ func (r *Reviewer) ConfigFields() []plugin.ConfigField {
 		{
 			Name:      "review_post_option",
 			Type:      plugin.ConfigTypeSelect,
-			Title:     plugin.MakeTranslator(i18n.ConfigReviewPostTitle),
+			Title:     plugin.MakeTranslator(my18N.ConfigReviewPostTitle),
 			Required:  false,
 			UIOptions: plugin.ConfigFieldUIOptions{},
 			Value:     defaultOption,
 			Options: []plugin.ConfigFieldOption{
 				{
 					Value: OptionNone,
-					Label: plugin.MakeTranslator(i18n.ConfigSelectOption),
+					Label: plugin.MakeTranslator(my18N.ConfigSelectOption),
 				},
 				{
 					Value: OptionAll,
-					Label: plugin.MakeTranslator(i18n.ConfigReviewPostLabelAll),
+					Label: plugin.MakeTranslator(my18N.ConfigReviewPostLabelAll),
 				},
 				{
 					Value: OptionFirst,
-					Label: plugin.MakeTranslator(i18n.ConfigReviewPostLabelFirst),
+					Label: plugin.MakeTranslator(my18N.ConfigReviewPostLabelFirst),
 				},
 			},
 		},
 		{
 			Name:        "review_post_keywords",
 			Type:        plugin.ConfigTypeTextarea,
-			Title:       plugin.MakeTranslator(i18n.ConfigReviewPostKeywordsTitle),
-			Description: plugin.MakeTranslator(i18n.ConfigReviewPostKeywordsDescription),
+			Title:       plugin.MakeTranslator(my18N.ConfigReviewPostKeywordsTitle),
+			Description: plugin.MakeTranslator(my18N.ConfigReviewPostKeywordsDescription),
 			Value:       r.Config.PostReviewKeywords,
 		},
 		{
 			Name:        "disallowed_keywords",
 			Type:        plugin.ConfigTypeTextarea,
-			Title:       plugin.MakeTranslator(i18n.ConfigDisallowedKeywordsTitle),
-			Description: plugin.MakeTranslator(i18n.ConfigDisallowedKeywordsDescription),
+			Title:       plugin.MakeTranslator(my18N.ConfigDisallowedKeywordsTitle),
+			Description: plugin.MakeTranslator(my18N.ConfigDisallowedKeywordsDescription),
 			Value:       r.Config.PostDisallowedKeywords,
 		},
 	}

@@ -1,11 +1,10 @@
-module gitlab.hexinfo.cn/xops/answer-plugins/llm-reviewer
+module github.com/cyoung96/llm-reviewer
 
 go 1.24
 
 require (
-	github.com/apache/answer v1.4.2-RC1.0.20250107023923-061894735091
-	github.com/apache/answer-plugins/reviewer-basic v1.0.7
-	github.com/apache/answer-plugins/util v1.0.3-0.20250107030257-cf94ebc70954
+	github.com/apache/answer v1.5.0
+	github.com/apache/answer-plugins/util v1.0.3
 	github.com/segmentfault/pacman v1.0.5-0.20230822083413-c0075a2d401f
 )
 
@@ -27,6 +26,7 @@ require (
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.27 // indirect
